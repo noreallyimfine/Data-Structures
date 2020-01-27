@@ -10,7 +10,6 @@ class Queue:
         self.storage = DoublyLinkedList()
 
     def enqueue(self, value):
-        ## if list is empty
         self.storage.add_to_tail(value)
         self.size += 1
 
