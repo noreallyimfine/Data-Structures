@@ -22,16 +22,12 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        ## check for key in cache
-        if key in cache:
+        if key in self.cache:
             # move key to front of cache and return value
             self.storage.move_to_front(key)
-            return cache[key]
-        ## if not return None
+            return self.cache[key]
         else:
             return None
-        
-        
 
     """
     Adds the given key-value pair to the cache. The newly-
@@ -44,4 +40,7 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        pass
+        ## if cache is full,  delete tail
+        ## if key already in cache, overwrite with value
+        ## Add new value to cache
+        ## Always set most recent
