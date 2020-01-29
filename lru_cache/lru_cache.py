@@ -59,7 +59,6 @@ class LRUCache:
                 self.storage.add_to_head(new_node)
                 self.cache[key] = new_node
             else:
-                #new_node = ListNode((key, value))
                 self.storage.add_to_head((key, value))
                 self.cache[key] = self.storage.head
                 self.size += 1
