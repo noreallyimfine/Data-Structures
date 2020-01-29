@@ -28,8 +28,6 @@ class LRUCache:
     def get(self, key):
         if key in self.cache:
             # move key to front of cache and return value
-            print(self.cache[key])
-            print(type(self.cache[key]))
             self.storage.move_to_front(self.cache[key])
             value = self.cache[key].value[1]
             return value
