@@ -1,4 +1,8 @@
 from doubly_linked_list import DoublyLinkedList
+import sys
+sys.path.append('doubly_linked_list')
+from doubly_linked_list import ListNode
+
 
 class LRUCache:
     """
@@ -24,8 +28,11 @@ class LRUCache:
     def get(self, key):
         if key in self.cache:
             # move key to front of cache and return value
-            self.storage.move_to_front(key)
-            return self.cache[key]
+            print(self.cache[key])
+            print(type(self.cache[key]))
+            self.storage.move_to_front(self.cache[key])
+            value = self.cache[key].value[1]
+            return value
         else:
             return None
 
@@ -40,7 +47,21 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        ## if cache is full,  delete tail
-        ## if key already in cache, overwrite with value
-        ## Add new value to cache
-        ## Always set most recent
+        if key in self.cache:
+            new_node = ListNode((key, value))
+            self.cache[key] = new_node
+            self.storage.move_to_front(new_node)
+
+        else:
+            # if cache is full,  delete tail and add new key to head
+            if self.size == self.limit:
+                oldest = self.storage.remove_from_tail()
+                del self.cache[oldest[0]]
+                new_node = ListNode((key, value))
+                self.storage.add_to_head(new_node)
+                self.cache[key] = new_node
+            else:
+                #new_node = ListNode((key, value))
+                self.storage.add_to_head((key, value))
+                self.cache[key] = self.storage.head
+                self.size += 1

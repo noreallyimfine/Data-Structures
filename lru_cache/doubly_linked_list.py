@@ -8,6 +8,12 @@ class ListNode:
         self.prev = prev
         self.next = next
 
+    # def __repr__(self):
+    #     return f"ListNode({self.value}, {self.prev}, {self.next})"
+
+    # def __str__(self):
+    #     return f"Value: {self.value}, Prev: {self.prev}, Next: {self.next}"
+
     """Wrap the given value in a ListNode and insert it
     after this node. Note that this node could already
     have a next node it is point to."""
@@ -47,6 +53,11 @@ class DoublyLinkedList:
 
     def __len__(self):
         return self.length
+
+    def __str__(self):
+        head = f"Head: {self.head.value}"
+        tail = f"Tail: {self.tail.value}"
+        return head + '\n' + tail
 
     """Wraps the given value in a ListNode and inserts it
     as the new head of the list. Don't forget to handle
