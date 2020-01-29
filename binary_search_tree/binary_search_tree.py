@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../queue_and_stack')
+sys.path.append('queue_and_stack')
 from dll_queue import Queue
 from dll_stack import Stack
 
@@ -12,16 +12,61 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # each object should be its own BST
+        bst_value = BinarySearchTree(value)
+        if self.value >= value:
+            if not self.left:
+                self.left = bst_value
+            else:
+            # check against right value
+                return self.left.insert(value)
+        elif self.value < value:
+            if not self.right:
+                self.right = bst_value
+            else:
+                return self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        # base case - found target:
+        if self.value == target:
+            # return true
+            return True
+        
+        # if current value is higher than target
+        elif self.value > target:
+            if self.left:
+                return self.left.contains(target)
+            else:
+                return False
+        elif self.value < target:
+            if self.right:
+                return self.right.contains(target)
+            else:
+                return False
+
+       
+          # if there is a value to the right:
+            # recursion to the right
+          # if no value:
+            # return false
+        # if current value is lesser than target
+            # if there is a value to left
+                # recursion to the left
+
+            # if no value
+            #   # return false 
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        highest = self.value
+        current = self
+        while current.right:
+            print(highest)
+            current = current.right
+        highest = current.value
+        return highest
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
